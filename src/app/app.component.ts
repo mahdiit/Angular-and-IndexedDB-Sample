@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatButton} from '@angular/material/button';
+
 import { Dexie } from "dexie"
 import { DbEntity, Repository } from "sample-repository-pattern"
 
@@ -38,10 +41,16 @@ class PersonListDb extends Dexie {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {  
+export class AppComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
+
+  OnRowClick(el: any){
+    alert(el);
+  }
+
   Db?: PersonListDb;
   public dataSource = new MatTableDataSource<PersonInfo>();
-  public displayedColumns = ['Id', 'FirstName', 'LastName', 'MobileNumber', 'CreatedDate' ];
+  public displayedColumns = ['Id', "FullName", 'MobileNumber', 'CreatedDate', "ActionList"];
 
   constructor() {
     (async () => {
@@ -51,17 +60,19 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     (async () => {
-      console.log("ngOnInit");      
+      console.log("ngOnInit");
       this.Db = new PersonListDb();
       //await this.Db.Person.Add(new PersonInfo("Alireza", "S-" + (new Date()).getTime().toString()));
       //await this.Db.Person.Add(new PersonInfo("Saeed", "TY-" + (new Date()).getMinutes().toString()));
-      this.dataSource.data = await this.Db.Person.GetAll();
+      this.dataSource.data = await this.Db.Person.GetAll();      
       //console.table(this.Source.localdata);
     })();
   }
 
   ngAfterViewInit() {
-    console.log("ngAfterViewInit");    
+    console.log("ngAfterViewInit");
+    if (this.paginator != null)
+      this.dataSource.paginator = this.paginator;
   }
 
   title = 'First Angular App';
