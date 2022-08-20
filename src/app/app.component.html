@@ -1,21 +1,22 @@
 <h1>Person List</h1>
-<div class="mat-elevation-z8">
+
+<div class="padding: 5px;">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    
+
     <mat-text-column name="Id"></mat-text-column>
 
     <ng-container matColumnDef="FullName">
       <th mat-header-cell *matHeaderCellDef> Full Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.FirstName}} {{element.LastName}}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.FirstName }} {{ element.LastName }}</td>
     </ng-container>
 
     <ng-container matColumnDef="MobileNumber">
       <th mat-header-cell *matHeaderCellDef> MobileNumber </th>
-      <td mat-cell *matCellDef="let element"> {{element.MobileNumber }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.MobileNumber }} </td>
     </ng-container>
     <ng-container matColumnDef="CreatedDate">
       <th mat-header-cell *matHeaderCellDef> Created Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.CreatedDate}} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.CreatedDate | jdate | faNum }} </td>
     </ng-container>
 
     <ng-container matColumnDef="ActionList">
