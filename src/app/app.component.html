@@ -1,6 +1,32 @@
 <h1>Person List</h1>
-
+<div *ngIf="IsEditMode">
+  <form #form="ngForm">
+    <table class="table">
+      <tr>
+        <td>
+          <input class="form-control" type="text"  maxlength="100" required name="FirstName"
+            [(ngModel)]="FormPerson.FirstName" />
+        </td>
+        <td>
+          <input class="form-control" type="text"  maxlength="100" required name="LastName"
+            [(ngModel)]="FormPerson.LastName" />
+        </td>
+        <td>
+          <input class="form-control" type="date" required name="CreatedDate" [(ngModel)]="FormPerson.CreatedDate" />
+        </td>
+        <td>
+          <input class="form-control" type="text" pattern="\d{11}" required name="MobileNumber" [(ngModel)]="FormPerson.MobileNumber" />
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="Cancel()">Cancel</button>
+          <button class="btn btn-secondary" (click)="Save(form)">Save</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
 <div class="padding: 5px;">
+  <button *ngIf="!IsEditMode" (click)="NewMode()">New</button>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <mat-text-column name="Id"></mat-text-column>
@@ -16,14 +42,14 @@
     </ng-container>
     <ng-container matColumnDef="CreatedDate">
       <th mat-header-cell *matHeaderCellDef> Created Date </th>
-      <td mat-cell *matCellDef="let element"> {{ element.CreatedDate | jdate | faNum }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.CreatedDate }} </td>
     </ng-container>
 
     <ng-container matColumnDef="ActionList">
       <th mat-header-cell *matHeaderCellDef> Action List</th>
       <td mat-cell *matCellDef="let element">
-        <button (click)="OnRowClick(element.FirstName)" mat-button color="primary">
-          Edit {{ element.Id }}</button>
+        <button (click)="OnRowEdit(element)" mat-button color="primary">Edit</button>
+        <button (click)="OnRowDelete(element)" mat-button color="primary">Delete</button>
       </td>
     </ng-container>
 

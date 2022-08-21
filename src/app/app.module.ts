@@ -4,32 +4,20 @@ import { AppMaterialModule } from "./app.material-module";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {JdatePipe, FaNumPipe, NgxPersianModule} from 'ngx-persian';
+import { FormsModule } from '@angular/forms';
 
-@Pipe({
-  name: 'JdatePipe',
-  pure: false
-})
-export class JdatePipeExtend extends JdatePipe {}
-
-@Pipe({
-  name: 'FaNumPipe',
-  pure: false
-})
-export class FaNumPipeExtend extends FaNumPipe {}
 
 @NgModule({  
   declarations: [
-    AppComponent,
-    JdatePipeExtend,
-    FaNumPipeExtend
+    AppComponent
+    
   ],
   imports: [
     BrowserModule,   
     AppMaterialModule, 
     AppRoutingModule, 
-    BrowserAnimationsModule,
-    NgxPersianModule
+    BrowserAnimationsModule,    
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
