@@ -77,19 +77,22 @@ export class AppComponent implements OnInit {
     this.IsEditMode = false;
   }
 
-  Save(form: NgForm) {
+  ErrorMessage : string[]= [];
 
+  Save(form: NgForm) {
     if (!form.valid) {
+      this.ErrorMessage = [];
       Object.keys(form.controls).forEach(key => {
         let controlErrors = form.controls[key].errors;
         if (controlErrors != null) {
           Object.keys(controlErrors).forEach(keyError => {
-            console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', 
-            controlErrors != null ? controlErrors[keyError]: "");
+            //console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', 
+            //controlErrors != null ? controlErrors[keyError]: "");
+            this.ErrorMessage.push(`${key} ${keyError}`);
           });
         }
       });
-      alert('invalid');
+      alert('invalid =>' + this.ErrorMessage.length);
       return;
     }
 
