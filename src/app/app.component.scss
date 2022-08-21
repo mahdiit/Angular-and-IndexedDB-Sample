@@ -1,5 +1,9 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
 table{
     width: 100%;
+}
+.button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+.data-table-holder{
+    padding: 10px;
 }
