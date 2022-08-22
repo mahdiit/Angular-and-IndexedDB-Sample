@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatButton } from '@angular/material/button';
 import { Dexie } from "dexie"
 import { DbEntity, Repository } from "sample-repository-pattern"
-import { defer, from, Observable } from 'rxjs';
-import { NgForm, ValidationErrors } from '@angular/forms';
+import { from } from 'rxjs';
+import { NgForm, } from '@angular/forms';
 import { AppConfigService } from './services/app-config.service';
+import { AppSettings, AppSettingService } from './services/app-settings';
+
 
 class PersonInfo extends DbEntity {
   public Id?: number;
@@ -72,8 +73,9 @@ export class AppComponent implements OnInit {
   public dataSource = new MatTableDataSource<PersonInfo>();
   public displayedColumns = ['Id', "FullName", 'MobileNumber', 'CreatedDate', "ActionList"];
 
-  constructor(appConfig: AppConfigService) {
-    console.log(appConfig.data.textfile);
+  constructor(appConfig: AppConfigService, appSettings: AppSettingService) {
+    console.log(appConfig.data);
+    console.log(appSettings.data);
     (async () => {
       console.log("constructor");
     })();
