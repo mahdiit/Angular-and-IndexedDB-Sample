@@ -6,6 +6,7 @@ import { Dexie } from "dexie"
 import { DbEntity, Repository } from "sample-repository-pattern"
 import { defer, from, Observable } from 'rxjs';
 import { NgForm, ValidationErrors } from '@angular/forms';
+import { AppConfigService } from './services/app-config.service';
 
 class PersonInfo extends DbEntity {
   public Id?: number;
@@ -54,8 +55,8 @@ export class AppComponent implements OnInit {
 
   OnRowDelete(rowElement: any) {
 
-    if(!confirm('Are you sure?'))
-    return;
+    if (!confirm('Are you sure?'))
+      return;
 
     var id = rowElement.Id;
     (async () => {
@@ -71,7 +72,8 @@ export class AppComponent implements OnInit {
   public dataSource = new MatTableDataSource<PersonInfo>();
   public displayedColumns = ['Id', "FullName", 'MobileNumber', 'CreatedDate', "ActionList"];
 
-  constructor() {
+  constructor(appConfig: AppConfigService) {
+    console.log(appConfig.data.textfile);
     (async () => {
       console.log("constructor");
     })();
@@ -81,7 +83,7 @@ export class AppComponent implements OnInit {
     this.IsEditMode = false;
   }
 
-  ErrorMessage : string[]= [];
+  ErrorMessage: string[] = [];
 
   Save(form: NgForm) {
     if (!form.valid) {
