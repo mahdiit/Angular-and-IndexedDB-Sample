@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  config: 'assets/config/config.json',
+  settings: 'assets/config/settings.json'
 };
 
 /*
