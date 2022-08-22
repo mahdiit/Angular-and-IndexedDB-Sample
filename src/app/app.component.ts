@@ -53,6 +53,10 @@ export class AppComponent implements OnInit {
   }
 
   OnRowDelete(rowElement: any) {
+
+    if(!confirm('Are you sure?'))
+    return;
+
     var id = rowElement.Id;
     (async () => {
       if (this.Db == null)
@@ -87,7 +91,7 @@ export class AppComponent implements OnInit {
         if (controlErrors != null) {
           Object.keys(controlErrors).forEach(keyError => {
             //console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', 
-            //controlErrors != null ? controlErrors[keyError]: "");
+            //controlErrors != null ? controlErrors[keyError]: "");            
             this.ErrorMessage.push(`${key} ${keyError}`);
           });
         }
