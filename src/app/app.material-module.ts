@@ -5,7 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDivider, MatDividerModule } from '@angular/material/divider'
+import { MatDividerModule } from '@angular/material/divider'
+
 @NgModule({
     // since we're exporting these modules, add them to export
     exports: [

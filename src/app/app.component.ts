@@ -6,7 +6,7 @@ import { DbEntity, Repository } from "sample-repository-pattern"
 import { from } from 'rxjs';
 import { NgForm, } from '@angular/forms';
 import { AppConfigService } from './services/app-config.service';
-import { AppSettings, AppSettingService } from './services/app-settings';
+import { AppSettingService } from './services/app-settings';
 
 
 class PersonInfo extends DbEntity {

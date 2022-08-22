@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Injectable, NgModule, Pipe } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppMaterialModule } from "./app.material-module";
 import { AppRoutingModule } from './app-routing.module';
