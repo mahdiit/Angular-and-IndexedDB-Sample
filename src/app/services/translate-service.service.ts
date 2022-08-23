@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppData } from 'src/AppData';
 
 @Injectable({ providedIn: 'root' })
 export class TranslateService {
@@ -27,6 +28,6 @@ export class TranslateService {
 
 export function SetupTranslateFactory(service: TranslateService):
   Function {
-  return () => service.use('fa');
+  return () => service.use(AppData.lang);
 }
 
