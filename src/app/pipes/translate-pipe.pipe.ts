@@ -9,9 +9,9 @@ export class TranslatePipe implements PipeTransform {
 
   }
 
-  transform(value: any, args: any[]): any {
-    if (args && args.length == 1)
-      return this.translate.data[args[0]];
+  transform(value: any, key?: string): any {
+    if (key && key != null)
+      return this.translate.data[key];
     else
       return value;
   }
