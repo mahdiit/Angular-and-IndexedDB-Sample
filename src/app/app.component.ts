@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ReflectiveInjector, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Dexie } from "dexie"
@@ -8,6 +8,8 @@ import { NgForm, } from '@angular/forms';
 import { AppConfigService } from './services/app-config.service';
 import { AppSettingService } from './services/app-settings';
 import { TranslateService } from './services/translate-service.service';
+import { JsonFileLoaderService } from './services/json-file-loader-service.service';
+import { AppConfig } from './services/app-config';
 
 
 class PersonInfo extends DbEntity {
@@ -148,6 +150,14 @@ export class AppComponent implements OnInit {
     console.log("ngAfterViewInit");
     if (this.paginator != null)
       this.dataSource.paginator = this.paginator;
+
+    let injector = Injector.create({ providers: [{ provide: JsonFileLoaderService, deps: [] }] });
+    const jsonLoader: JsonFileLoaderService = injector.get(JsonFileLoaderService);
+    (async () => {
+      console.log("get settings....");
+      let result = await jsonLoader.Load<AppConfig>('assets/config.jon');
+      console.log(result);
+    })();
   }
 
   title = 'First Angular App';
