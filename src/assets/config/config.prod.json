@@ -1,5 +1,6 @@
 {
     "heroesUrl": "api/heroes",
     "textfile": "assets/textfile.txt",
-    "date": "2020-01-29"
+    "date": "2020-01-29",
+    "lang": "en"
   }

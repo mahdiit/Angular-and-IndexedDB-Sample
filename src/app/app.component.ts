@@ -7,6 +7,7 @@ import { from } from 'rxjs';
 import { NgForm, } from '@angular/forms';
 import { AppConfigService } from './services/app-config.service';
 import { AppSettingService } from './services/app-settings';
+import { TranslateService } from './services/translate-service.service';
 
 
 class PersonInfo extends DbEntity {
@@ -73,9 +74,11 @@ export class AppComponent implements OnInit {
   public dataSource = new MatTableDataSource<PersonInfo>();
   public displayedColumns = ['Id', "FullName", 'MobileNumber', 'CreatedDate', "ActionList"];
 
-  constructor(appConfig: AppConfigService, appSettings: AppSettingService) {
+  constructor(appConfig: AppConfigService, translateService: TranslateService) {
     console.log(appConfig.data);
-    console.log(appSettings.data);
+    //console.log(appSettings.data);
+    console.log(translateService.data);
+
     (async () => {
       console.log("constructor");
     })();

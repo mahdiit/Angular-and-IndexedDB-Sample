@@ -8,11 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppConfigService } from './services/app-config.service';
 import { AppSettingService, Setup_AppConfigService_Factory, Setup_AppSettingsService_Factory } from './services/app-settings';
+import { SetupTranslateFactory, TranslateService } from './services/translate-service.service';
+import { TranslatePipe } from './pipes/translate-pipe.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
-
+    AppComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -22,9 +24,10 @@ import { AppSettingService, Setup_AppConfigService_Factory, Setup_AppSettingsSer
     FormsModule,
     HttpClientModule
   ],
-  providers: [
-    { provide: APP_INITIALIZER, useFactory: Setup_AppConfigService_Factory, deps: [AppConfigService], multi: true },
-    { provide: APP_INITIALIZER, useFactory: Setup_AppSettingsService_Factory, deps: [AppSettingService], multi: true }
+  providers: [    
+    { provide: APP_INITIALIZER, useFactory: Setup_AppConfigService_Factory, deps: [AppConfigService], multi:true },
+    { provide: APP_INITIALIZER, useFactory: Setup_AppSettingsService_Factory, deps: [AppSettingService] , multi:true},    
+    { provide: APP_INITIALIZER, useFactory: SetupTranslateFactory, deps: [TranslateService], multi:true }
   ],
   bootstrap: [AppComponent]
 })
